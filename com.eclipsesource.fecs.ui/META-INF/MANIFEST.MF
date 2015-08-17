@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: FECS Eclipse Integration
+Bundle-SymbolicName: com.eclipsesource.fecs.ui;singleton:=true
+Bundle-Version: 0.0.1.qualifier
+Bundle-Activator: com.eclipsesource.fecs.ui.internal.Activator
+Bundle-Vendor: EclipseSource
+Require-Bundle: org.eclipse.ui;bundle-version="3.6.0",
+ org.eclipse.core.runtime;bundle-version="3.6.0",
+ org.eclipse.core.resources;bundle-version="3.6.0",
+ org.eclipse.ui.workbench,
+ org.eclipse.jface
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
+Import-Package: com.eclipsesource.fecs;version="[0.9.11,1.0.0)",
+ com.eclipsesource.fecs.internal;version="0.9.11",
+ com.eclipsesource.json;version="[0.9.0.jshint,0.9.0.jshint]"
+Export-Package: com.eclipsesource.fecs.ui.internal;version="0.9.11";x-internal:=true,
+ com.eclipsesource.fecs.ui.internal.builder;version="0.9.11";x-internal:=true,
+ com.eclipsesource.fecs.ui.internal.preferences;version="0.9.11";x-internal:=true,
+ com.eclipsesource.fecs.ui.internal.preferences.ui;version="0.9.11";x-internal:=true

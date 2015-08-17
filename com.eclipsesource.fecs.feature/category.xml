@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/com.eclipsesource.fecs.feature_0.0.1.qualifier.jar" id="com.eclipsesource.fecs.feature" version="0.0.1.qualifier">
+      <category name="com.eclipsesource.fecs.feature"/>
+   </feature>
+   <category-def name="com.eclipsesource.fecs.feature" label="FECS"/>
+</site>
