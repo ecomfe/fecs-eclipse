@@ -12,40 +12,39 @@ package com.eclipsesource.fecs.internal;
 
 import com.eclipsesource.fecs.Problem;
 
-
 public class ProblemImpl implements Problem {
-  private final int line;
-  private final int character;
-  private final String message;
-  private final String code;
-  private final int severity;
+    private final int line;
+    private final int character;
+    private final String message;
+    private final String code;
+    private final int severity;
 
-  public ProblemImpl( int line, int character, String message, String code, int severity) {
-    this.line = line;
-    this.character = character;
-    this.message = message;
-    this.code = code;
-    this.severity = severity;
-  }
+    public ProblemImpl(int line, int character, String message, String code, int severity) {
+        this.line = line;
+        this.character = character;
+        this.message = message;
+        this.code = code;
+        this.severity = severity;
+    }
 
-  public int getLine() {
-    return line;
-  }
+    public int getLine() {
+        return line;
+    }
 
-  public int getCharacter() {
-    return character;
-  }
+    public int getCharacter() {
+        return character;
+    }
 
-  public String getMessage() {
-    return message;
-  }
+    public String getMessage() {
+        return message;
+    }
 
-  public String getCode() {
-    return code;
-  }
+    public String getCode() {
+        return code;
+    }
 
-  public boolean isError() {
-    return severity == 2;
-  }
+    public boolean isError() {
+        return severity == 2;
+    }
 
 }

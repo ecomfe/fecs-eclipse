@@ -12,38 +12,37 @@ package com.eclipsesource.fecs.ui.internal.util;
 
 import org.eclipse.swt.layout.RowData;
 
-
 public class RowDataConfig {
 
-  private final RowData data;
+    private final RowData data;
 
-  RowDataConfig() {
-    data = new RowData();
-  }
+    RowDataConfig() {
+        data = new RowData();
+    }
 
-  RowData getLayoutData() {
-    return data;
-  }
+    RowData getLayoutData() {
+        return data;
+    }
 
-  public RowDataConfig size( int width, int height ) {
-    data.width = width;
-    data.height = height;
-    return this;
-  }
+    public RowDataConfig size(int width, int height) {
+        data.width = width;
+        data.height = height;
+        return this;
+    }
 
-  public RowDataConfig width( int width ) {
-    data.width = width;
-    return this;
-  }
+    public RowDataConfig width(int width) {
+        data.width = width;
+        return this;
+    }
 
-  public RowDataConfig height( int height ) {
-    data.height = height;
-    return this;
-  }
+    public RowDataConfig height(int height) {
+        data.height = height;
+        return this;
+    }
 
-  public RowDataConfig exclude( boolean exclude ) {
-    data.exclude = exclude;
-    return this;
-  }
+    public RowDataConfig exclude(boolean exclude) {
+        data.exclude = exclude;
+        return this;
+    }
 
 }

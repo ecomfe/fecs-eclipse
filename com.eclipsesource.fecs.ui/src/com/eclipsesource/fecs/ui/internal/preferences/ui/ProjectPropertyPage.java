@@ -26,72 +26,71 @@ import com.eclipsesource.fecs.ui.internal.builder.FecsBuilder;
 import com.eclipsesource.fecs.ui.internal.preferences.EnablementPreferences;
 import com.eclipsesource.fecs.ui.internal.preferences.ResourceSelector;
 
-
 public class ProjectPropertyPage extends AbstractPropertyPage {
 
-  private IncludesView includesView;
+    private IncludesView includesView;
 
-  @Override
-  public boolean performOk() {
-    try {
-      if( storePreferences() ) {
-        boolean enabled = new ResourceSelector( getResource().getProject() ).allowVisitProject();
-        setBuilderEnabled( enabled );
-        triggerRebuild();
-      }
-    } catch( CoreException exception ) {
-      String message = "Failed to store settings";
-      Activator.logError( message, exception );
-      return false;
+    @Override
+    public boolean performOk() {
+        try {
+            if (storePreferences()) {
+                boolean enabled = new ResourceSelector(getResource().getProject()).allowVisitProject();
+                setBuilderEnabled(enabled);
+                triggerRebuild();
+            }
+        } catch (CoreException exception) {
+            String message = "Failed to store settings";
+            Activator.logError(message, exception);
+            return false;
+        }
+        return true;
     }
-    return true;
-  }
 
-  @Override
-  protected void performDefaults() {
-    super.performDefaults();
-    includesView.loadDefaults();
-  }
-
-  @Override
-  protected Control createContents( Composite parent ) {
-    Composite composite = new Composite( parent, SWT.NONE );
-    gridLayout( composite ).margin( 0, 0 ).columns( 1 );
-    gridData( composite ).fillBoth();
-    includesView = new IncludesView( composite, SWT.NONE, getResource().getProject() );
-    gridData( includesView ).fillBoth();
-    loadPreferences();
-    return composite;
-  }
-
-  private void loadPreferences() {
-    Preferences node = getPreferences();
-    EnablementPreferences enablePreferences = new EnablementPreferences( node );
-    includesView.loadPreferences( enablePreferences );
-  }
-
-  private boolean storePreferences() throws CoreException {
-    Preferences node = getPreferences();
-    EnablementPreferences enablePreferences = new EnablementPreferences( node );
-    includesView.storePreferences( enablePreferences );
-    if( enablePreferences.hasChanged() ) {
-      savePreferences();
-      return true;
+    @Override
+    protected void performDefaults() {
+        super.performDefaults();
+        includesView.loadDefaults();
     }
-    return false;
-  }
 
-  private boolean setBuilderEnabled( boolean enabled ) throws CoreException {
-    IProject project = getResource().getProject();
-    if( enabled ) {
-      return BuilderUtil.addBuilderToProject( project, FecsBuilder.ID );
+    @Override
+    protected Control createContents(Composite parent) {
+        Composite composite = new Composite(parent, SWT.NONE);
+        gridLayout(composite).margin(0, 0).columns(1);
+        gridData(composite).fillBoth();
+        includesView = new IncludesView(composite, SWT.NONE, getResource().getProject());
+        gridData(includesView).fillBoth();
+        loadPreferences();
+        return composite;
     }
-    return BuilderUtil.removeBuilderFromProject( project, FecsBuilder.ID );
-  }
 
-  private void triggerRebuild() throws CoreException {
-    IProject project = getResource().getProject();
-    BuilderUtil.triggerClean( project, FecsBuilder.ID );
-  }
+    private void loadPreferences() {
+        Preferences node = getPreferences();
+        EnablementPreferences enablePreferences = new EnablementPreferences(node);
+        includesView.loadPreferences(enablePreferences);
+    }
+
+    private boolean storePreferences() throws CoreException {
+        Preferences node = getPreferences();
+        EnablementPreferences enablePreferences = new EnablementPreferences(node);
+        includesView.storePreferences(enablePreferences);
+        if (enablePreferences.hasChanged()) {
+            savePreferences();
+            return true;
+        }
+        return false;
+    }
+
+    private boolean setBuilderEnabled(boolean enabled) throws CoreException {
+        IProject project = getResource().getProject();
+        if (enabled) {
+            return BuilderUtil.addBuilderToProject(project, FecsBuilder.ID);
+        }
+        return BuilderUtil.removeBuilderFromProject(project, FecsBuilder.ID);
+    }
+
+    private void triggerRebuild() throws CoreException {
+        IProject project = getResource().getProject();
+        BuilderUtil.triggerClean(project, FecsBuilder.ID);
+    }
 
 }

@@ -26,80 +26,77 @@ import org.eclipse.jface.dialogs.MessageDialog;
  * @see org.eclipse.core.commands.AbstractHandler
  */
 public class FormatFileHandler extends AbstractHandler {
-	// private final formatter;
-	private Fecs fecs;
+    // private final formatter;
+    private Fecs fecs;
 
-	// 这个留着，可以用
-	private ResourceSelector selector;
+    // 这个留着，可以用
+    private ResourceSelector selector;
 
-	/**
-	 * The constructor.
-	 */
-	public FormatFileHandler() {
-	}
+    /**
+     * The constructor.
+     */
+    public FormatFileHandler() {
+    }
 
-	/**
-	 * the command has been executed, so extract extract the needed information
-	 * from the application context.
-	 */
-	public Object execute(ExecutionEvent event) throws ExecutionException {
-		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
+    /**
+     * the command has been executed, so extract extract the needed information from the application context.
+     */
+    public Object execute(ExecutionEvent event) throws ExecutionException {
+        IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
 
-		IWorkbenchPage page = window.getActivePage();
+        IWorkbenchPage page = window.getActivePage();
 
-		// 取得当前处于活动状态的编辑器窗口
-		IEditorPart part = page.getActiveEditor();
+        // 取得当前处于活动状态的编辑器窗口
+        IEditorPart part = page.getActiveEditor();
 
-		if (part == null) {
-			MessageDialog.openInformation(window.getShell(), "JSHint Eclipse Integration", "请打开需要格式化的文件！");
-			return null;
-		}
+        if (part == null) {
+            MessageDialog.openInformation(window.getShell(), "JSHint Eclipse Integration", "请打开需要格式化的文件！");
+            return null;
+        }
 
-		IFile file = part.getEditorInput().getAdapter(IFile.class);
+        IFile file = part.getEditorInput().getAdapter(IFile.class);
 
-		// 获取项目以用来过滤
-		IProject project = file.getProject();
+        // 获取项目以用来过滤
+        IProject project = file.getProject();
 
-		selector = new ResourceSelector(project);
+        selector = new ResourceSelector(project);
 
-		// 如果文件没有被过滤，则支持格式化
-		try {
-			fecs = selector.allowVisitProject() && selector.allowVisitFile(file) ? createFecs(project) : null;
-		} catch (CoreException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+        // 如果文件没有被过滤，则支持格式化
+        try {
+            fecs = selector.allowVisitProject() && selector.allowVisitFile(file) ? createFecs(project) : null;
+        } catch (CoreException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
 
-		if (fecs == null) {
-			// 如果fecs为null，则不格式化该文件，并提示
-			MessageDialog.openInformation(window.getShell(), "JSHint Eclipse Integration", "该文件不支持格式化！");
-		} else {
-			// 不为null则进行格式化。
-			try {
-				fecs.format(file, null);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
+        if (fecs == null) {
+            // 如果fecs为null，则不格式化该文件，并提示
+            MessageDialog.openInformation(window.getShell(), "JSHint Eclipse Integration", "该文件不支持格式化！");
+        } else {
+            // 不为null则进行格式化。
+            try {
+                fecs.format(file, null);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
-		return null;
-	}
-	private Fecs createFecs(IProject project) throws CoreException {
-//		System.out.println( new ConfigLoader( project ).getConfiguration() );
-		
-		FecsPreferences preferences = new FecsPreferences();
-		String dir;
-		String fecsDir;
-		if (preferences.getUseCustomLib()) {
-			dir = preferences.getCustomNodeDir();
-		}
-		else {
-			dir = "";
-		}
-		fecsDir = preferences.getCustomFecsDir();
-		
-		return new Fecs(dir, fecsDir);
-	}
+        return null;
+    }
+
+    private Fecs createFecs(IProject project) throws CoreException {
+        // System.out.println( new ConfigLoader( project ).getConfiguration() );
+
+        FecsPreferences preferences = new FecsPreferences();
+        String dir;
+        String fecsDir;
+        if (preferences.getUseCustomLib()) {
+            dir = preferences.getCustomNodeDir();
+        } else {
+            dir = "";
+        }
+        fecsDir = preferences.getCustomFecsDir();
+
+        return new Fecs(dir, fecsDir);
+    }
 }
-
-

@@ -17,19 +17,18 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Listener;
 
-
 public class ButtonBar extends Composite {
 
-  public ButtonBar( Composite parent, int style ) {
-    super( parent, style );
-    rowLayout( this ).vertical().fill( true ).spacing( 3 );
-  }
+    public ButtonBar(Composite parent, int style) {
+        super(parent, style);
+        rowLayout(this).vertical().fill(true).spacing(3);
+    }
 
-  public Button addButton( String text, Listener listener ) {
-    Button button = new Button( this, SWT.PUSH );
-    button.setText( text );
-    button.addListener( SWT.Selection, listener );
-    return button;
-  }
+    public Button addButton(String text, Listener listener) {
+        Button button = new Button(this, SWT.PUSH);
+        button.setText(text);
+        button.addListener(SWT.Selection, listener);
+        return button;
+    }
 
 }

@@ -23,31 +23,30 @@ import org.osgi.service.prefs.Preferences;
 import com.eclipsesource.fecs.ui.internal.Activator;
 import com.eclipsesource.fecs.ui.internal.preferences.PreferencesFactory;
 
-
 public abstract class AbstractPropertyPage extends PropertyPage {
 
-  protected IResource getResource() {
-    IAdaptable element = getElement();
-    if( element instanceof IResource ) {
-      return ( IResource )element;
+    protected IResource getResource() {
+        IAdaptable element = getElement();
+        if (element instanceof IResource) {
+            return (IResource) element;
+        }
+        return (IResource) element.getAdapter(IResource.class);
     }
-    return ( IResource )element.getAdapter( IResource.class );
-  }
 
-  protected Preferences getPreferences() {
-    IProject project = getResource().getProject();
-    return PreferencesFactory.getProjectPreferences( project );
-  }
-
-  protected void savePreferences() throws CoreException {
-    Preferences node = getPreferences();
-    try {
-      node.flush();
-    } catch( BackingStoreException exception ) {
-      String message = "Failed to store preferences";
-      Status status = new Status( IStatus.ERROR, Activator.PLUGIN_ID, message, exception );
-      throw new CoreException( status );
+    protected Preferences getPreferences() {
+        IProject project = getResource().getProject();
+        return PreferencesFactory.getProjectPreferences(project);
     }
-  }
+
+    protected void savePreferences() throws CoreException {
+        Preferences node = getPreferences();
+        try {
+            node.flush();
+        } catch (BackingStoreException exception) {
+            String message = "Failed to store preferences";
+            Status status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, message, exception);
+            throw new CoreException(status);
+        }
+    }
 
 }

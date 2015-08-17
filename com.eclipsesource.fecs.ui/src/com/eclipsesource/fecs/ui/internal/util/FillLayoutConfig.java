@@ -14,49 +14,48 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Layout;
 
-
 public class FillLayoutConfig {
 
-  private final FillLayout layout;
+    private final FillLayout layout;
 
-  FillLayoutConfig() {
-    layout = new FillLayout();
-  }
+    FillLayoutConfig() {
+        layout = new FillLayout();
+    }
 
-  Layout getLayout() {
-    return layout;
-  }
+    Layout getLayout() {
+        return layout;
+    }
 
-  public FillLayoutConfig type( int type ) {
-    layout.type = type;
-    return this;
-  }
+    public FillLayoutConfig type(int type) {
+        layout.type = type;
+        return this;
+    }
 
-  public FillLayoutConfig vertical() {
-    layout.type = SWT.VERTICAL;
-    return this;
-  }
+    public FillLayoutConfig vertical() {
+        layout.type = SWT.VERTICAL;
+        return this;
+    }
 
-  public FillLayoutConfig horizontal() {
-    layout.type = SWT.HORIZONTAL;
-    return this;
-  }
+    public FillLayoutConfig horizontal() {
+        layout.type = SWT.HORIZONTAL;
+        return this;
+    }
 
-  public FillLayoutConfig margin( int allEdges ) {
-    layout.marginWidth = allEdges;
-    layout.marginHeight = allEdges;
-    return this;
-  }
+    public FillLayoutConfig margin(int allEdges) {
+        layout.marginWidth = allEdges;
+        layout.marginHeight = allEdges;
+        return this;
+    }
 
-  public FillLayoutConfig margin( int leftAndRight, int topAndBottom ) {
-    layout.marginWidth = leftAndRight;
-    layout.marginHeight = topAndBottom;
-    return this;
-  }
+    public FillLayoutConfig margin(int leftAndRight, int topAndBottom) {
+        layout.marginWidth = leftAndRight;
+        layout.marginHeight = topAndBottom;
+        return this;
+    }
 
-  public FillLayoutConfig spacing( int spacing ) {
-    layout.spacing = spacing;
-    return this;
-  }
+    public FillLayoutConfig spacing(int spacing) {
+        layout.spacing = spacing;
+        return this;
+    }
 
 }

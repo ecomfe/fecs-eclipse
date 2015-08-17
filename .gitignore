@@ -34,3 +34,6 @@ RemoteSystemsTempFiles
 
 # Mac
 .DS_Store
+
+# Java Code Style
+.recommenders

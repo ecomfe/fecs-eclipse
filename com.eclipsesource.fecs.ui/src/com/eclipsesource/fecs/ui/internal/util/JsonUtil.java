@@ -17,31 +17,30 @@ import com.eclipsesource.fecs.ui.internal.builder.CommentsFilter;
 import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.PrettyPrintJsonWriter;
 
-
 public class JsonUtil {
 
-  public static boolean jsonEquals( String string1, String string2 ) {
-    if( string1 != null && string2 != null ) {
-      try {
-        JsonObject json1 = JsonObject.readFrom( new CommentsFilter( string1 ).toString() );
-        JsonObject json2 = JsonObject.readFrom( new CommentsFilter( string2 ).toString() );
-        return json1.equals( json2 );
-      } catch( Exception exception ) {
-        // ignore exceptions and return false
-      }
+    public static boolean jsonEquals(String string1, String string2) {
+        if (string1 != null && string2 != null) {
+            try {
+                JsonObject json1 = JsonObject.readFrom(new CommentsFilter(string1).toString());
+                JsonObject json2 = JsonObject.readFrom(new CommentsFilter(string2).toString());
+                return json1.equals(json2);
+            } catch (Exception exception) {
+                // ignore exceptions and return false
+            }
+        }
+        return false;
     }
-    return false;
-  }
 
-  public static String prettyPrint( JsonObject oldConfig ) throws RuntimeException {
-    StringWriter writer = new StringWriter();
-    try {
-      oldConfig.writeTo( new PrettyPrintJsonWriter( writer ) );
-    } catch( IOException exception ) {
-      // StringWriter does not throw IOExceptions
-      throw new RuntimeException( exception );
+    public static String prettyPrint(JsonObject oldConfig) throws RuntimeException {
+        StringWriter writer = new StringWriter();
+        try {
+            oldConfig.writeTo(new PrettyPrintJsonWriter(writer));
+        } catch (IOException exception) {
+            // StringWriter does not throw IOExceptions
+            throw new RuntimeException(exception);
+        }
+        return writer.toString();
     }
-    return writer.toString();
-  }
 
 }

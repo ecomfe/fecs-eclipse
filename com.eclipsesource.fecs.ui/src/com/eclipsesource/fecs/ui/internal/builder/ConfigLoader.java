@@ -27,59 +27,59 @@ import com.eclipsesource.json.JsonObject;
 
 public class ConfigLoader {
 
-	private final IProject project;
+    private final IProject project;
 
-	public ConfigLoader(IProject project) {
-		this.project = project;
-	}
+    public ConfigLoader(IProject project) {
+        this.project = project;
+    }
 
-	public JsonObject getConfiguration() {
-		Preferences projectNode = PreferencesFactory.getProjectPreferences(project);
-		OptionsPreferences projectPreferences = new OptionsPreferences(projectNode);
-		if (projectPreferences.getProjectSpecific()) {
-			return getProjectConfig(projectPreferences);
-		}
-		return getWorkspaceConfig();
-	}
+    public JsonObject getConfiguration() {
+        Preferences projectNode = PreferencesFactory.getProjectPreferences(project);
+        OptionsPreferences projectPreferences = new OptionsPreferences(projectNode);
+        if (projectPreferences.getProjectSpecific()) {
+            return getProjectConfig(projectPreferences);
+        }
+        return getWorkspaceConfig();
+    }
 
-	private JsonObject getProjectConfig(OptionsPreferences projectPrefs) {
-		try {
-			String json = getProjectConfigJson(projectPrefs);
-			return JsonObject.readFrom(filterComments(json));
-		} catch (Exception exception) {
-			String message = "Failed to read jshint configuration for project " + project.getName();
-			Activator.logError(message, exception);
-			return new JsonObject();
-		}
-	}
+    private JsonObject getProjectConfig(OptionsPreferences projectPrefs) {
+        try {
+            String json = getProjectConfigJson(projectPrefs);
+            return JsonObject.readFrom(filterComments(json));
+        } catch (Exception exception) {
+            String message = "Failed to read jshint configuration for project " + project.getName();
+            Activator.logError(message, exception);
+            return new JsonObject();
+        }
+    }
 
-	private String getProjectConfigJson(OptionsPreferences projectPrefs) throws CoreException, IOException {
-		IFile configFile = getProjectConfigFile();
-		if (!configFile.exists()) {
-			// compatibility
-			return projectPrefs.getConfig();
-		}
-		return readFileUtf8(configFile);
-	}
+    private String getProjectConfigJson(OptionsPreferences projectPrefs) throws CoreException, IOException {
+        IFile configFile = getProjectConfigFile();
+        if (!configFile.exists()) {
+            // compatibility
+            return projectPrefs.getConfig();
+        }
+        return readFileUtf8(configFile);
+    }
 
-	private IFile getProjectConfigFile() {
-		return project.getFile(".jshintrc");
-	}
+    private IFile getProjectConfigFile() {
+        return project.getFile(".jshintrc");
+    }
 
-	private static JsonObject getWorkspaceConfig() {
-		try {
-			String json = getWorkspaceConfigJson();
-			return JsonObject.readFrom(filterComments(json));
-		} catch (Exception exception) {
-			String message = "Failed to read jshint configuration from workspace preferences";
-			Activator.logError(message, exception);
-			return new JsonObject();
-		}
-	}
+    private static JsonObject getWorkspaceConfig() {
+        try {
+            String json = getWorkspaceConfigJson();
+            return JsonObject.readFrom(filterComments(json));
+        } catch (Exception exception) {
+            String message = "Failed to read jshint configuration from workspace preferences";
+            Activator.logError(message, exception);
+            return new JsonObject();
+        }
+    }
 
-	private static String getWorkspaceConfigJson() {
-		Preferences workspaceNode = PreferencesFactory.getWorkspacePreferences();
-		return new OptionsPreferences(workspaceNode).getConfig();
-	}
+    private static String getWorkspaceConfigJson() {
+        Preferences workspaceNode = PreferencesFactory.getWorkspacePreferences();
+        return new OptionsPreferences(workspaceNode).getConfig();
+    }
 
 }

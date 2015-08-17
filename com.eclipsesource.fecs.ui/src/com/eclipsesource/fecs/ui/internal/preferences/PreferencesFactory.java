@@ -19,16 +19,16 @@ import com.eclipsesource.fecs.ui.internal.Activator;
 
 public class PreferencesFactory {
 
-	// ProjectScope表示项目在eclipse首选项层级，可以用来寻找首选项的值
-	// getNode找到关于指定项目指定插件的首选项，这里应该是fecs的首选项
-	public static Preferences getProjectPreferences(IProject project) {
-		return new ProjectScope(project).getNode(Activator.PLUGIN_ID);
-	}
+    // ProjectScope表示项目在eclipse首选项层级，可以用来寻找首选项的值
+    // getNode找到关于指定项目指定插件的首选项，这里应该是fecs的首选项
+    public static Preferences getProjectPreferences(IProject project) {
+        return new ProjectScope(project).getNode(Activator.PLUGIN_ID);
+    }
 
-	@SuppressWarnings("deprecation")
-	public static Preferences getWorkspacePreferences() {
-		// InstanceScope.INSTANCE does not yet exist in Eclipse 3.6
-		return new InstanceScope().getNode(Activator.PLUGIN_ID);
-	}
+    @SuppressWarnings("deprecation")
+    public static Preferences getWorkspacePreferences() {
+        // InstanceScope.INSTANCE does not yet exist in Eclipse 3.6
+        return new InstanceScope().getNode(Activator.PLUGIN_ID);
+    }
 
 }

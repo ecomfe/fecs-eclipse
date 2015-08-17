@@ -46,119 +46,116 @@ import com.eclipsesource.fecs.ui.internal.preferences.ResourceSelector;
 
 class FecsBuilderVisitor implements IResourceVisitor, IResourceDeltaVisitor {
 
-	// private final JSHint checker;
-	private final Fecs fecs;
+    // private final JSHint checker;
+    private final Fecs fecs;
 
-	// 这个留着，可以用
-	private final ResourceSelector selector;
-	private final IProgressMonitor monitor;
+    // 这个留着，可以用
+    private final ResourceSelector selector;
+    private final IProgressMonitor monitor;
 
-	// 构造函数
-	public FecsBuilderVisitor(IProject project, IProgressMonitor monitor) throws CoreException {
-		Preferences node = PreferencesFactory.getProjectPreferences(project);
-		new EnablementPreferences(node);
-		selector = new ResourceSelector(project);
-		fecs = selector.allowVisitProject() ? createFecs(project) : null;
-		this.monitor = monitor;
-	}
+    // 构造函数
+    public FecsBuilderVisitor(IProject project, IProgressMonitor monitor) throws CoreException {
+        Preferences node = PreferencesFactory.getProjectPreferences(project);
+        new EnablementPreferences(node);
+        selector = new ResourceSelector(project);
+        fecs = selector.allowVisitProject() ? createFecs(project) : null;
+        this.monitor = monitor;
+    }
 
-	public boolean visit(IResourceDelta delta) throws CoreException {
-		IResource resource = delta.getResource();
-		return visit(resource);
-	}
+    public boolean visit(IResourceDelta delta) throws CoreException {
+        IResource resource = delta.getResource();
+        return visit(resource);
+    }
 
-	public boolean visit(IResource resource) throws CoreException {
-		boolean descend = false;
-		if (resource.exists() && selector.allowVisitProject() && !monitor.isCanceled()) {
-			if (resource.getType() != IResource.FILE) {
-				descend = selector.allowVisitFolder(resource);
-			} else {
-				clean(resource);
-				if (selector.allowVisitFile(resource)) {
-					check((IFile) resource);
-				}
-				descend = true;
-			}
-		}
-		return descend;
-	}
+    public boolean visit(IResource resource) throws CoreException {
+        boolean descend = false;
+        if (resource.exists() && selector.allowVisitProject() && !monitor.isCanceled()) {
+            if (resource.getType() != IResource.FILE) {
+                descend = selector.allowVisitFolder(resource);
+            } else {
+                clean(resource);
+                if (selector.allowVisitFile(resource)) {
+                    check((IFile) resource);
+                }
+                descend = true;
+            }
+        }
+        return descend;
+    }
 
-	private Fecs createFecs(IProject project) throws CoreException {
-//		System.out.println( new ConfigLoader( project ).getConfiguration() );
+    private Fecs createFecs(IProject project) throws CoreException {
+        // System.out.println( new ConfigLoader( project ).getConfiguration() );
 
-		FecsPreferences preferences = new FecsPreferences();
-		
-		String dir;
-		String fecsDir;
-		if (preferences.getUseCustomLib()) {
-			dir = preferences.getCustomNodeDir();
-		}
-		else {
-			dir = "";
-		}
-		fecsDir = preferences.getCustomFecsDir();
-		
-		return new Fecs(dir, fecsDir);
-	}
+        FecsPreferences preferences = new FecsPreferences();
 
+        String dir;
+        String fecsDir;
+        if (preferences.getUseCustomLib()) {
+            dir = preferences.getCustomNodeDir();
+        } else {
+            dir = "";
+        }
+        fecsDir = preferences.getCustomFecsDir();
 
+        return new Fecs(dir, fecsDir);
+    }
 
-	private void check(IFile file) throws CoreException {
-		Text code = readContent(file);
-		ProblemHandler handler = new MarkerHandler(new MarkerAdapter(file), code);
-		try {
+    private void check(IFile file) throws CoreException {
+        Text code = readContent(file);
+        ProblemHandler handler = new MarkerHandler(new MarkerAdapter(file), code);
+        try {
 
-			try {
-//				 fecs.format(file, monitor);
-				fecs.check(file, code, handler);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			// checker.check( code, handler );
+            try {
+                // fecs.format(file, monitor);
+                fecs.check(file, code, handler);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            // checker.check( code, handler );
 
-		} catch (CoreExceptionWrapper wrapper) {
-			throw (CoreException) wrapper.getCause();
-		} catch (RuntimeException exception) {
-			String message = "Failed checking file " + file.getFullPath().toPortableString();
-			throw new RuntimeException(message, exception);
-		}
-	}
+        } catch (CoreExceptionWrapper wrapper) {
+            throw (CoreException) wrapper.getCause();
+        } catch (RuntimeException exception) {
+            String message = "Failed checking file " + file.getFullPath().toPortableString();
+            throw new RuntimeException(message, exception);
+        }
+    }
 
-	private static void clean(IResource resource) throws CoreException {
-		new MarkerAdapter(resource).removeMarkers();
-	}
+    private static void clean(IResource resource) throws CoreException {
+        new MarkerAdapter(resource).removeMarkers();
+    }
 
-	// private static InputStream getCustomLib() throws FileNotFoundException {
-	// JSHintPreferences globalPrefs = new JSHintPreferences();
-	// if( globalPrefs.getUseCustomLib() ) {
-	// File file = new File( globalPrefs.getCustomLibPath() );
-	// return new FileInputStream( file );
-	// }
-	// return null;
-	// }
-	//
+    // private static InputStream getCustomLib() throws FileNotFoundException {
+    // JSHintPreferences globalPrefs = new JSHintPreferences();
+    // if( globalPrefs.getUseCustomLib() ) {
+    // File file = new File( globalPrefs.getCustomLibPath() );
+    // return new FileInputStream( file );
+    // }
+    // return null;
+    // }
+    //
 
-	private static Text readContent(IFile file) throws CoreException {
-		try {
-			InputStream inputStream = file.getContents();
-			String charset = file.getCharset();
-			return readContent(inputStream, charset);
-		} catch (IOException exception) {
-			String message = "Failed to read resource";
-			throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, message, exception));
-		}
-	}
+    private static Text readContent(IFile file) throws CoreException {
+        try {
+            InputStream inputStream = file.getContents();
+            String charset = file.getCharset();
+            return readContent(inputStream, charset);
+        } catch (IOException exception) {
+            String message = "Failed to read resource";
+            throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, message, exception));
+        }
+    }
 
-	private static Text readContent(InputStream inputStream, String charset)
-			throws UnsupportedEncodingException, IOException {
-		Text result;
-		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, charset));
-		try {
-			result = new Text(reader);
-		} finally {
-			reader.close();
-		}
-		return result;
-	}
+    private static Text readContent(InputStream inputStream, String charset)
+            throws UnsupportedEncodingException, IOException {
+        Text result;
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, charset));
+        try {
+            result = new Text(reader);
+        } finally {
+            reader.close();
+        }
+        return result;
+    }
 
 }

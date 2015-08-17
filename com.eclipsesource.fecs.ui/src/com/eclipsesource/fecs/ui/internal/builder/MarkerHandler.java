@@ -20,48 +20,48 @@ import com.eclipsesource.fecs.ui.internal.preferences.FecsPreferences;
 
 final class MarkerHandler implements ProblemHandler {
 
-	private final MarkerAdapter markerAdapter;
-	private final Text code;
-	private final boolean enableErrorMarkers;
+    private final MarkerAdapter markerAdapter;
+    private final Text code;
+    private final boolean enableErrorMarkers;
 
-	MarkerHandler(MarkerAdapter markerAdapter, Text code) {
-		this.markerAdapter = markerAdapter;
-		this.code = code;
-		enableErrorMarkers = new FecsPreferences().getEnableErrorMarkers();
-	}
+    MarkerHandler(MarkerAdapter markerAdapter, Text code) {
+        this.markerAdapter = markerAdapter;
+        this.code = code;
+        enableErrorMarkers = new FecsPreferences().getEnableErrorMarkers();
+    }
 
-	public void handleProblem(Problem problem) {
-		int line = problem.getLine();
-		int character = problem.getCharacter();
-		if (isValidLine(line)) {
-			int offset = -1;
-			if (isValidCharacter(line, character)) {
-				offset = code.getLineOffset(line - 1) + character;
-			}
-			createMarker(line, offset, problem.getMessage(), problem.isError());
-		} else {
-			createMarker(-1, -1, problem.getMessage(), problem.isError());
-		}
-	}
+    public void handleProblem(Problem problem) {
+        int line = problem.getLine();
+        int character = problem.getCharacter();
+        if (isValidLine(line)) {
+            int offset = -1;
+            if (isValidCharacter(line, character)) {
+                offset = code.getLineOffset(line - 1) + character;
+            }
+            createMarker(line, offset, problem.getMessage(), problem.isError());
+        } else {
+            createMarker(-1, -1, problem.getMessage(), problem.isError());
+        }
+    }
 
-	private void createMarker(int line, int character, String message, boolean isError) throws CoreExceptionWrapper {
-		try {
-			if (enableErrorMarkers && isError) {
-				markerAdapter.createError(line, character, character, message);
-			} else {
-				markerAdapter.createWarning(line, character, character, message);
-			}
-		} catch (CoreException ce) {
-			throw new CoreExceptionWrapper(ce);
-		}
-	}
+    private void createMarker(int line, int character, String message, boolean isError) throws CoreExceptionWrapper {
+        try {
+            if (enableErrorMarkers && isError) {
+                markerAdapter.createError(line, character, character, message);
+            } else {
+                markerAdapter.createWarning(line, character, character, message);
+            }
+        } catch (CoreException ce) {
+            throw new CoreExceptionWrapper(ce);
+        }
+    }
 
-	private boolean isValidLine(int line) {
-		return line >= 1 && line <= code.getLineCount();
-	}
+    private boolean isValidLine(int line) {
+        return line >= 1 && line <= code.getLineCount();
+    }
 
-	private boolean isValidCharacter(int line, int character) {
-		return character >= 0 && character < code.getLineLength(line - 1);
-	}
+    private boolean isValidCharacter(int line, int character) {
+        return character >= 0 && character < code.getLineLength(line - 1);
+    }
 
 }

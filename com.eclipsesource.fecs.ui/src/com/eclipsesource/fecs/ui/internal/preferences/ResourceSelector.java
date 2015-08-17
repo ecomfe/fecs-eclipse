@@ -17,61 +17,60 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.osgi.service.prefs.Preferences;
 
-
 public class ResourceSelector {
 
-  private final List<PathPattern> includePatterns;
-  private final List<PathPattern> excludePatterns;
+    private final List<PathPattern> includePatterns;
+    private final List<PathPattern> excludePatterns;
 
-  public ResourceSelector( IProject project ) {
-    Preferences preferenceNode = PreferencesFactory.getProjectPreferences( project );
-    EnablementPreferences preferences = new EnablementPreferences( preferenceNode );
-    includePatterns = createPatterns( preferences.getIncludePatterns() );
-    excludePatterns = createPatterns( preferences.getExcludePatterns() );
-  }
+    public ResourceSelector(IProject project) {
+        Preferences preferenceNode = PreferencesFactory.getProjectPreferences(project);
+        EnablementPreferences preferences = new EnablementPreferences(preferenceNode);
+        includePatterns = createPatterns(preferences.getIncludePatterns());
+        excludePatterns = createPatterns(preferences.getExcludePatterns());
+    }
 
-  public boolean allowVisitProject() {
-    return !includePatterns.isEmpty();
-  }
+    public boolean allowVisitProject() {
+        return !includePatterns.isEmpty();
+    }
 
-  public boolean allowVisitFolder( IResource resource ) {
-    return !includePatterns.isEmpty();
-  }
+    public boolean allowVisitFolder(IResource resource) {
+        return !includePatterns.isEmpty();
+    }
 
-  public boolean allowVisitFile( IResource resource ) {
-    String[] pathSegments = resource.getParent().getProjectRelativePath().segments();
-    String fileName = resource.getName();
-    return isFileIncluded( pathSegments, fileName ) && !isFileExcluded( pathSegments, fileName );
-  }
+    public boolean allowVisitFile(IResource resource) {
+        String[] pathSegments = resource.getParent().getProjectRelativePath().segments();
+        String fileName = resource.getName();
+        return isFileIncluded(pathSegments, fileName) && !isFileExcluded(pathSegments, fileName);
+    }
 
-  private boolean isFileIncluded( String[] parentSegments, String fileName ) {
-    for( PathPattern pattern : includePatterns ) {
-      if( pattern.matchesFolder( parentSegments ) ) {
-        if( pattern.matchesFile( fileName ) ) {
-          return true;
+    private boolean isFileIncluded(String[] parentSegments, String fileName) {
+        for (PathPattern pattern : includePatterns) {
+            if (pattern.matchesFolder(parentSegments)) {
+                if (pattern.matchesFile(fileName)) {
+                    return true;
+                }
+            }
         }
-      }
+        return false;
     }
-    return false;
-  }
 
-  private boolean isFileExcluded( String[] parentSegments, String fileName ) {
-    for( PathPattern pattern : excludePatterns ) {
-      if( pattern.matchesFolder( parentSegments ) ) {
-        if( pattern.matchesFile( fileName ) ) {
-          return true;
+    private boolean isFileExcluded(String[] parentSegments, String fileName) {
+        for (PathPattern pattern : excludePatterns) {
+            if (pattern.matchesFolder(parentSegments)) {
+                if (pattern.matchesFile(fileName)) {
+                    return true;
+                }
+            }
         }
-      }
+        return false;
     }
-    return false;
-  }
 
-  private static List<PathPattern> createPatterns( List<String> expressions ) {
-    List<PathPattern> patterns = new ArrayList<PathPattern>( expressions.size() );
-    for( String expression : expressions ) {
-      patterns.add( PathPattern.create( expression ) );
+    private static List<PathPattern> createPatterns(List<String> expressions) {
+        List<PathPattern> patterns = new ArrayList<PathPattern>(expressions.size());
+        for (String expression : expressions) {
+            patterns.add(PathPattern.create(expression));
+        }
+        return patterns;
     }
-    return patterns;
-  }
 
 }

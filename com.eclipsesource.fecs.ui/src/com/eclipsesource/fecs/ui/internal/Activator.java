@@ -17,47 +17,45 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.ui.statushandlers.StatusManager;
 import org.osgi.framework.BundleContext;
 
-
 public class Activator extends AbstractUIPlugin {
 
-  public static final String PLUGIN_ID = "com.eclipsesource.fecs.ui"; //$NON-NLS-1$
-  private static Activator instance;
+    public static final String PLUGIN_ID = "com.eclipsesource.fecs.ui"; // $NON-NLS-1$
+    private static Activator instance;
 
-  @Override
-  public void start( BundleContext context ) throws Exception {
-    super.start( context );
-    instance = this;
-  }
+    @Override
+    public void start(BundleContext context) throws Exception {
+        super.start(context);
+        instance = this;
+    }
 
-  @Override
-  public void stop( BundleContext context ) throws Exception {
-    instance = null;
-    super.stop( context );
-  }
+    @Override
+    public void stop(BundleContext context) throws Exception {
+        instance = null;
+        super.stop(context);
+    }
 
-  /**
-   * Returns the shared instance
-   *
-   * @return the shared instance
-   */
-  public static Activator getDefault() {
-    return instance;
-  }
+    /**
+     * Returns the shared instance
+     *
+     * @return the shared instance
+     */
+    public static Activator getDefault() {
+        return instance;
+    }
 
-  /**
-   * Returns an image descriptor for the image file at the given plug-in
-   * relative path
-   *
-   * @param path the path
-   * @return the image descriptor
-   */
-  public static ImageDescriptor getImageDescriptor( String path ) {
-    return imageDescriptorFromPlugin( PLUGIN_ID, path );
-  }
+    /**
+     * Returns an image descriptor for the image file at the given plug-in relative path
+     *
+     * @param path the path
+     * @return the image descriptor
+     */
+    public static ImageDescriptor getImageDescriptor(String path) {
+        return imageDescriptorFromPlugin(PLUGIN_ID, path);
+    }
 
-  public static void logError( String message, Exception exception ) {
-    Status status = new Status( IStatus.ERROR, PLUGIN_ID, message, exception );
-    StatusManager.getManager().handle( status );
-  }
+    public static void logError(String message, Exception exception) {
+        Status status = new Status(IStatus.ERROR, PLUGIN_ID, message, exception);
+        StatusManager.getManager().handle(status);
+    }
 
 }

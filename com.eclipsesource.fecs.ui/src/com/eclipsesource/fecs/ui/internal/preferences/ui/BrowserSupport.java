@@ -23,53 +23,52 @@ import org.eclipse.ui.browser.IWebBrowser;
 import org.eclipse.ui.browser.IWorkbenchBrowserSupport;
 import org.eclipse.ui.statushandlers.StatusManager;
 
-
 public class BrowserSupport {
 
-  private static final int BROWSER_STYLE = IWorkbenchBrowserSupport.AS_EDITOR
-                                           | IWorkbenchBrowserSupport.LOCATION_BAR
-                                           | IWorkbenchBrowserSupport.NAVIGATION_BAR
-                                           | IWorkbenchBrowserSupport.STATUS;
+    private static final int BROWSER_STYLE = IWorkbenchBrowserSupport.AS_EDITOR
+            | IWorkbenchBrowserSupport.LOCATION_BAR
+            | IWorkbenchBrowserSupport.NAVIGATION_BAR
+            | IWorkbenchBrowserSupport.STATUS;
 
-  public static final BrowserSupport INSTANCE = new BrowserSupport();
+    public static final BrowserSupport INSTANCE = new BrowserSupport();
 
-  private final Listener selectionListener;
+    private final Listener selectionListener;
 
-  private BrowserSupport() {
-    selectionListener = createSelectionListener();
-  }
-
-  public void openUrl( String url ) {
-    if( url == null ) {
-      throw new NullPointerException( "url is null" );
+    private BrowserSupport() {
+        selectionListener = createSelectionListener();
     }
-    IWorkbenchBrowserSupport support = PlatformUI.getWorkbench().getBrowserSupport();
-    try {
-      IWebBrowser browser = support.createBrowser( BROWSER_STYLE, url, null, null );
-      browser.openURL( new URL( url ) );
-    } catch( MalformedURLException exception ) {
-      throw new IllegalArgumentException( "Invalid URL: " + url );
-    } catch( PartInitException exception ) {
-      StatusManager.getManager().handle( exception.getStatus(), StatusManager.LOG );
-    }
-  }
 
-  public void enableHyperlinks( Link link ) {
-    link.addListener( SWT.Selection, selectionListener );
-  }
-
-  private Listener createSelectionListener() {
-    return new Listener() {
-      public void handleEvent( Event event ) {
-        if( isSupportedUrl( event.text ) ) {
-          openUrl( event.text );
+    public void openUrl(String url) {
+        if (url == null) {
+            throw new NullPointerException("url is null");
         }
-      }
-    };
-  }
+        IWorkbenchBrowserSupport support = PlatformUI.getWorkbench().getBrowserSupport();
+        try {
+            IWebBrowser browser = support.createBrowser(BROWSER_STYLE, url, null, null);
+            browser.openURL(new URL(url));
+        } catch (MalformedURLException exception) {
+            throw new IllegalArgumentException("Invalid URL: " + url);
+        } catch (PartInitException exception) {
+            StatusManager.getManager().handle(exception.getStatus(), StatusManager.LOG);
+        }
+    }
 
-  private static boolean isSupportedUrl( String text ) {
-    return text.startsWith( "http://" ) || text.startsWith( "https://" );
-  }
+    public void enableHyperlinks(Link link) {
+        link.addListener(SWT.Selection, selectionListener);
+    }
+
+    private Listener createSelectionListener() {
+        return new Listener() {
+            public void handleEvent(Event event) {
+                if (isSupportedUrl(event.text)) {
+                    openUrl(event.text);
+                }
+            }
+        };
+    }
+
+    private static boolean isSupportedUrl(String text) {
+        return text.startsWith("http://") || text.startsWith("https://");
+    }
 
 }

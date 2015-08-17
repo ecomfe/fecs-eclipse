@@ -13,40 +13,39 @@ package com.eclipsesource.fecs.ui.internal.util;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Layout;
 
-
 public class FormLayoutConfig {
 
-  private final FormLayout layout;
+    private final FormLayout layout;
 
-  FormLayoutConfig() {
-    this.layout = new FormLayout();
-  }
+    FormLayoutConfig() {
+        this.layout = new FormLayout();
+    }
 
-  Layout getLayout() {
-    return layout;
-  }
+    Layout getLayout() {
+        return layout;
+    }
 
-  public FormLayoutConfig margin( int allEdges ) {
-    margin( allEdges, allEdges, allEdges, allEdges );
-    return this;
-  }
+    public FormLayoutConfig margin(int allEdges) {
+        margin(allEdges, allEdges, allEdges, allEdges);
+        return this;
+    }
 
-  public FormLayoutConfig margin( int leftAndRight, int topAndBottom ) {
-    margin( topAndBottom, leftAndRight, topAndBottom, leftAndRight );
-    return this;
-  }
+    public FormLayoutConfig margin(int leftAndRight, int topAndBottom) {
+        margin(topAndBottom, leftAndRight, topAndBottom, leftAndRight);
+        return this;
+    }
 
-  public FormLayoutConfig margin( int top, int right, int bottom, int left ) {
-    layout.marginTop = top;
-    layout.marginRight = right;
-    layout.marginBottom = bottom;
-    layout.marginLeft = left;
-    return this;
-  }
+    public FormLayoutConfig margin(int top, int right, int bottom, int left) {
+        layout.marginTop = top;
+        layout.marginRight = right;
+        layout.marginBottom = bottom;
+        layout.marginLeft = left;
+        return this;
+    }
 
-  public FormLayoutConfig spacing( int spacing ) {
-    layout.spacing = spacing;
-    return this;
-  }
+    public FormLayoutConfig spacing(int spacing) {
+        layout.spacing = spacing;
+        return this;
+    }
 
 }

@@ -10,45 +10,44 @@
  ******************************************************************************/
 package com.eclipsesource.fecs;
 
-
 /**
  * Holds information about a problem found by JSHint.
  */
 public interface Problem {
 
-  /**
-   * Returns the line number in which the problem occurred.
-   *
-   * @return the line number, beginning with 1
-   */
-  int getLine();
+    /**
+     * Returns the line number in which the problem occurred.
+     *
+     * @return the line number, beginning with 1
+     */
+    int getLine();
 
-  /**
-   * Returns the character offset within the line in which the character occurred.
-   *
-   * @return the character offset, beginning with 0
-   */
-  int getCharacter();
+    /**
+     * Returns the character offset within the line in which the character occurred.
+     *
+     * @return the character offset, beginning with 0
+     */
+    int getCharacter();
 
-  /**
-   * The problem message returned by JSHint.
-   *
-   * @return the message
-   */
-  String getMessage();
+    /**
+     * The problem message returned by JSHint.
+     *
+     * @return the message
+     */
+    String getMessage();
 
-  /**
-   * The error code returned by JSHint.
-   *
-   * @return the error code
-   */
-  String getCode();
+    /**
+     * The error code returned by JSHint.
+     *
+     * @return the error code
+     */
+    String getCode();
 
-  /**
-   * Returns whether this problem represents an error.
-   *
-   * @return <code>true</code> if this is an error
-   */
-  boolean isError();
+    /**
+     * Returns whether this problem represents an error.
+     *
+     * @return <code>true</code> if this is an error
+     */
+    boolean isError();
 
 }
