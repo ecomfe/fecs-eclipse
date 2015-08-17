@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="fecs-eclipse : fecs for eclipse">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>fecs-eclipse</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/Fental/fecs-eclipse">View on GitHub</a>
+
+          <h1 id="project_title">fecs-eclipse</h1>
+          <h2 id="project_tagline">fecs for eclipse</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/Fental/fecs-eclipse/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/Fental/fecs-eclipse/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="fecs-eclipse" class="anchor" href="#fecs-eclipse" aria-hidden="true"><span class="octicon octicon-link"></span></a>fecs-eclipse</h1>
+
+<p>本插件在 <a href="https://github.com/eclipsesource/jshint-eclipse">jshint-eclipse</a> 插件的基础上，进行修改和扩展。</p>
+
+<h2>
+<a id="使用前提" class="anchor" href="#%E4%BD%BF%E7%94%A8%E5%89%8D%E6%8F%90" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用前提</h2>
+
+<p>安装 <a href="https://nodejs.org/download/">Node.js</a> ，下载 <a href="https://github.com/ecomfe/fecs">fecs</a> 。</p>
+
+<h2>
+<a id="安装更新方式" class="anchor" href="#%E5%AE%89%E8%A3%85%E6%9B%B4%E6%96%B0%E6%96%B9%E5%BC%8F" aria-hidden="true"><span class="octicon octicon-link"></span></a>安装（更新）方式</h2>
+
+<p>在 help 选项卡的 Install New Software 下进行安装</p>
+
+<ul>
+<li>本地安装（更新）</li>
+</ul>
+
+<p>下载该项目代码，点击 Add -&gt; Local... -&gt; 打开项目的 com.eclipsesource.fecs.update 目录 -&gt; OK</p>
+
+<ul>
+<li>在线安装（更新）</li>
+</ul>
+
+<p>在 Work with 一栏填写 update 网址：<a href="http://fental.github.io/Fental/update">http://fental.github.io/Fental/update</a>
+<img src="images/update.png" alt="update"></p>
+
+<p><img src="images/install.png" alt="安装"></p>
+
+<h2>
+<a id="使用方法" class="anchor" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用方法</h2>
+
+<h3>
+<a id="配置" class="anchor" href="#%E9%85%8D%E7%BD%AE" aria-hidden="true"><span class="octicon octicon-link"></span></a>配置</h3>
+
+<p>激活插件在偏好设置（Preferences）中设置 Node.js 和 FECS 的 bin 路径：</p>
+
+<p><img src="images/unconfig.png" alt="未配置路径"></p>
+
+<p>如果 Eclipse 可以获取系统环境变量，则可以使用 Node.js 的 default 路径，否则需要配置 Node.js 的bin路径。</p>
+
+<p><strong>配置 FECS 的 bin 路径。</strong></p>
+
+<p><img src="images/hadconfig.png" alt="配置路径"></p>
+
+<p>配置完没有提示错误信息则可以正常使用。</p>
+
+<h3>
+<a id="启用" class="anchor" href="#%E5%90%AF%E7%94%A8" aria-hidden="true"><span class="octicon octicon-link"></span></a>启用</h3>
+
+<p>右键项目进入 property 可设置插件检查哪些文件
+<img src="images/property.png" alt="property"></p>
+
+<p>在 Configuration 子选项卡可以导入 .fecsrc 文件更细粒度的配置</p>
+
+<p><img src="images/fecsrc.png" alt="fecsrc configuration"></p>
+
+<h3>
+<a id="代码检查" class="anchor" href="#%E4%BB%A3%E7%A0%81%E6%A3%80%E6%9F%A5" aria-hidden="true"><span class="octicon octicon-link"></span></a>代码检查</h3>
+
+<p>如图</p>
+
+<p><img src="images/check.png" alt="check"></p>
+
+<h3>
+<a id="代码格式化" class="anchor" href="#%E4%BB%A3%E7%A0%81%E6%A0%BC%E5%BC%8F%E5%8C%96" aria-hidden="true"><span class="octicon octicon-link"></span></a>代码格式化</h3>
+
+<p><img src="images/format.png" alt="format"></p>
+
+<p>可以通过点击工具栏的这两个按钮进行格式化（左侧的图标是格式化当前打开的文件，快捷键是 command + 6 或者 ctrl + 6，暂不支持快捷键自定义；右侧的图标是格式化左侧选中的项目/文件夹/文件）</p>
+
+<p><strong>格式化后不满意可通过回退来恢复原先文件内容</strong>，使用格式化项目或者文件夹这个功能时，property 的过滤器会起作用。</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">fecs-eclipse maintained by <a href="https://github.com/Fental">Fental</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
