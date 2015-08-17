@@ -26,3 +26,14 @@ node_modules
 
 # Users Environment Variables
 .lock-wscript
+
+# eclipse
+.metadata
+Eclipse.app
+RemoteSystemsTempFiles
+
+# Mac
+.DS_Store
+
+# Java Code Style
+.recommenders
