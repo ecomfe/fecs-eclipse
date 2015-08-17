@@ -36,6 +36,14 @@
 
 <p>本插件在 <a href="https://github.com/eclipsesource/jshint-eclipse">jshint-eclipse</a> 插件的基础上，进行修改和扩展。</p>
 
+<p>插件实现方式：通过 Java 执行命令行，获取控制台输出并展示。</p>
+
+<p>执行的命令行为：</p>
+
+<p><code>[nodeDir]node [fecsDir]fecs [options]</code></p>
+
+<p>通过 Preferences 的设置来获取 <code>[nodeDir]</code> <code>[fecsDir]</code> 的值</p>
+
 <h2>
 <a id="使用前提" class="anchor" href="#%E4%BD%BF%E7%94%A8%E5%89%8D%E6%8F%90" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用前提</h2>
 
@@ -56,7 +64,7 @@
 <li>在线安装（更新）</li>
 </ul>
 
-<p>在 Work with 一栏填写 update 网址：<a href="http://fental.github.io/Fental/update">http://fental.github.io/Fental/update</a></p>
+<p>在 Work with 一栏填写 update 网址：<a href="http://ecomfe.github.io/fecs-eclipse/update">http://ecomfe.github.io/fecs-eclipse/update</a></p>
 
 <p><img src="images/update.png" alt="update"></p>
 
@@ -68,15 +76,36 @@
 <h3>
 <a id="配置" class="anchor" href="#%E9%85%8D%E7%BD%AE" aria-hidden="true"><span class="octicon octicon-link"></span></a>配置</h3>
 
-<p>激活插件在偏好设置（Preferences）中设置 Node.js 和 FECS 的 bin 路径：</p>
+<p>在偏好设置（Preferences）中设置 Node.js 和 FECS 的 bin 路径：</p>
 
-<p><img src="images/unconfig.png" alt="未配置路径"></p>
+<p><img src="images/noconfig.png" alt="未配置路径"></p>
 
-<p>如果 Eclipse 可以获取系统环境变量，则可以使用 Node.js 的 default 路径，否则需要配置 Node.js 的bin路径。</p>
+<p><strong>配置 Node.js 的 bin 路径。</strong></p>
+
+<ul>
+<li>
+<p>Use default directory of node interpreter</p>
+
+<p>这个选项表示 Eclipse 可以获得系统环境变量，<code>[nodeDir] = ""</code>，执行的命令行为 <code>node [fecsDir]fecs [options]</code></p>
+</li>
+<li>
+<p>Provide the directory of node interpreter</p>
+
+<p>把选取的目录赋值给 <code>[nodeDir]</code> 。</p>
+</li>
+</ul>
 
 <p><strong>配置 FECS 的 bin 路径。</strong></p>
 
-<p><img src="images/hadconfig.png" alt="配置路径"></p>
+<ul>
+<li>
+<p>Provide the directory of fecs interpreter</p>
+
+<p>把选取的目录赋值给 <code>[fecsDir]</code> 。</p>
+</li>
+</ul>
+
+<p><img src="images/config.png" alt="配置路径"></p>
 
 <p>配置完没有提示错误信息则可以正常使用。</p>
 
