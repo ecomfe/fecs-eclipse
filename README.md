@@ -46,13 +46,13 @@
 
 + Provide the directory of node interpreter
 
-	这个选项表示比较容易容易理解，把选取的目录赋值给 ```[nodeDir]``` 。
+	把选取的目录赋值给 ```[nodeDir]``` 。
 
 **配置 FECS 的 bin 路径。**
 
 + Provide the directory of fecs interpreter
 
-	这个选项表示比较容易容易理解，把选取的目录赋值给 ```[fecsDir]``` 。
+	把选取的目录赋值给 ```[fecsDir]``` 。
 	
 ![配置路径](images/config.png)
 
