@@ -31,3 +31,6 @@ node_modules
 .metadata
 Eclipse.app
 RemoteSystemsTempFiles
+
+# Mac
+.DS_Store
