@@ -1,22 +1,22 @@
 # fecs-eclipse
 
-本插件在[jshint-eclipse](https://github.com/eclipsesource/jshint-eclipse)插件的基础上，进行修改和扩展。
+本插件在 [jshint-eclipse](https://github.com/eclipsesource/jshint-eclipse) 插件的基础上，进行修改和扩展。
 
 ## 使用前提
 
-安装[node](https://nodejs.org/download/)，下载[fecs](https://github.com/ecomfe/fecs)
+安装 [Node.js](https://nodejs.org/download/) ，下载 [fecs](https://github.com/ecomfe/fecs) 。
 
 ## 安装（更新）方式
 
-在help选项卡的Install New Software下进行安装
+在 help 选项卡的 Install New Software 下进行安装
 
-+ 本地安装
++ 本地安装（更新）
 
-下载该项目代码，点击Add -> Local... -> 打开项目的com.eclipsesource.fecs.update目录 -> OK
+下载该项目代码，点击 Add -> Local... -> 打开项目的 com.eclipsesource.fecs.update 目录 -> OK
 
-+ 在线安装
++ 在线安装（更新）
 
-在work with一栏填写update网址：http://fental.github.io/Fental/update
+在 Work with 一栏填写 update 网址：http://fental.github.io/Fental/update
 ![update](images/update.png)
 
 
@@ -26,13 +26,13 @@
 
 ### 配置
 
-激活插件在偏好设置(Preferences)中设置Node和FECS的bin路径：
+激活插件在偏好设置（Preferences）中设置 Node.js 和 FECS 的 bin 路径：
 
 ![未配置路径](images/unconfig.png)
 
-如果eclipse可以获取系统环境变量，则可以使用Node的default路径，否则需要配置Node的bin路径。
+如果 Eclipse 可以获取系统环境变量，则可以使用 Node.js 的 default 路径，否则需要配置 Node.js 的bin路径。
 
-**配置FECS的bin路径。**
+**配置 FECS 的 bin 路径。**
 
 ![配置路径](images/hadconfig.png)
 
@@ -40,10 +40,10 @@
 
 ### 启用
 
-右键项目进入property可设置插件检查哪些文件
+右键项目进入 property 可设置插件检查哪些文件
 ![property](images/property.png)
 
-在Configuration子选项卡可以导入.fecsrc文件更细粒度的配置
+在 Configuration 子选项卡可以导入 .fecsrc 文件更细粒度的配置
 
 ![fecsrc configuration](images/fecsrc.png)
 
@@ -57,6 +57,6 @@
 
 ![format](images/format.png)
 
-可以通过点击工具栏的这两个按钮进行格式化（左侧的图标是格式化当前打开的文件，快捷键是command+6或者ctrl+6，暂不支持快捷键自定义；右侧的图标是格式化左侧选中的项目/文件夹/文件）
+可以通过点击工具栏的这两个按钮进行格式化（左侧的图标是格式化当前打开的文件，快捷键是 command + 6 或者 ctrl + 6，暂不支持快捷键自定义；右侧的图标是格式化左侧选中的项目/文件夹/文件）
 
-**格式化后不满意可通过回退来恢复原先文件内容**，使用格式化项目或者文件夹这个功能时，property的过滤器会起作用。
+**格式化后不满意可通过回退来恢复原先文件内容**，使用格式化项目或者文件夹这个功能时，property 的过滤器会起作用。
