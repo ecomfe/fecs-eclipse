@@ -30,7 +30,9 @@
 
 ![未配置路径](images/unconfig.png)
 
-如果eclipse可以获取系统环境变量，则可以使用默认的default路径，否则需要配置Node的bin路径，只需配置FECS路径
+如果eclipse可以获取系统环境变量，则可以使用Node的default路径，否则需要配置Node的bin路径。
+
+**配置FECS的bin路径。**
 
 ![配置路径](images/hadconfig.png)
 
