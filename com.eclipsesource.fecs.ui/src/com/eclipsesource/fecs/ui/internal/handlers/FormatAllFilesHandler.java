@@ -88,23 +88,13 @@ public class FormatAllFilesHandler extends AbstractHandler {
 		FecsPreferences preferences = new FecsPreferences();
 		String dir;
 		String fecsDir;
-		if (preferences.getUseCustomLib() && preferences.getUseCustomFecs()) {
+		if (preferences.getUseCustomLib()) {
 			dir = preferences.getCustomNodeDir();
-			fecsDir = preferences.getCustomFecsDir();
-			
-		} else if (preferences.getUseCustomLib() == false && preferences.getUseCustomFecs() == true) {
-			dir = "";
-			fecsDir = preferences.getCustomFecsDir();
-			
-		} else if (preferences.getUseCustomLib() == true && preferences.getUseCustomFecs() == false) {
-			dir = preferences.getCustomNodeDir();
-			fecsDir = dir;
-			
-		} else {
-			dir = "";
-			fecsDir = dir;
-			
 		}
+		else {
+			dir = "";
+		}
+		fecsDir = preferences.getCustomFecsDir();
 		
 		return new Fecs(dir, fecsDir);
 	}

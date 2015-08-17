@@ -205,12 +205,12 @@ public class FecsPreferencePage extends PreferencePage implements IWorkbenchPref
 		gridData(customFecsPathLabelText).fillHorizontal().span(3, 1).indent(25, 1);
 		
 		// FECS
-		defaultFecsRadio = new Button(parent, SWT.RADIO);
+//		defaultFecsRadio = new Button(parent, SWT.RADIO);
 		// #1 使用默认的node bin路径
-		defaultFecsRadio.setText("Use default directory of FECS interpreter.(与node bin相同路径)");
+//		defaultFecsRadio.setText("Use default directory of FECS interpreter");
 
 		// 布局
-		gridData(defaultFecsRadio).fillHorizontal().span(3, 1);
+//		gridData(defaultFecsRadio).fillHorizontal().span(3, 1);
 
 		// 选中即可选择node bin路径
 		customFecsRadio = new Button(parent, SWT.RADIO);
@@ -321,23 +321,14 @@ public class FecsPreferencePage extends PreferencePage implements IWorkbenchPref
 		String fecsDir;
 		System.out.println(preferences.getUseCustomLib());
 		System.out.println(preferences.getUseCustomFecs());
-		if (preferences.getUseCustomLib() && preferences.getUseCustomFecs()) {
+
+		if (preferences.getUseCustomLib()) {
 			dir = transformDir(preferences.getCustomNodeDir());
-			fecsDir = transformDir(preferences.getCustomFecsDir());
-			
-		} else if (preferences.getUseCustomLib() == false && preferences.getUseCustomFecs() == true) {
-			dir = transformDir("");
-			fecsDir = transformDir(preferences.getCustomFecsDir());
-			
-		} else if (preferences.getUseCustomLib() == true && preferences.getUseCustomFecs() == false) {
-			dir = transformDir(preferences.getCustomNodeDir());
-			fecsDir = dir;
-			
-		} else {
-			dir = transformDir("");
-			fecsDir = dir;
-			
 		}
+		else {
+			dir = transformDir("");
+		}
+		fecsDir = transformDir(preferences.getCustomFecsDir());
 		validateDir(dir, fecsDir);
 	}
 
@@ -392,7 +383,6 @@ public class FecsPreferencePage extends PreferencePage implements IWorkbenchPref
 		customLibPathText.setText(preferences.getCustomNodeDir());
 
 		customFecsRadio.setSelection(preferences.getUseCustomFecs());
-		defaultFecsRadio.setSelection(!customFecsRadio.getSelection());
 		customFecsPathText.setText(preferences.getCustomFecsDir());
 
 		enableErrorsCheckbox.setSelection(preferences.getEnableErrorMarkers());

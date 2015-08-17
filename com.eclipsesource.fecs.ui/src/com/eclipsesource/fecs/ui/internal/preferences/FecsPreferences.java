@@ -46,7 +46,7 @@ public class FecsPreferences {
 	private static final String KEY_ENABLE_ERROR_MARKERS = "enableErrorMarkers";
 
 	private static final boolean DEF_USE_CUSTOM_LIB = false;
-	private static final boolean DEF_USE_CUSTOM_FECS = false;
+	private static final boolean DEF_USE_CUSTOM_FECS = true;
 	private static final String DEF_CUSTOM_LIB_PATH = "";
 	private static final boolean DEF_ENABLE_ERROR_MARKERS = false;
 

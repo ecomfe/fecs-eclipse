@@ -2,6 +2,14 @@
 
 本插件在 [jshint-eclipse](https://github.com/eclipsesource/jshint-eclipse) 插件的基础上，进行修改和扩展。
 
+插件实现方式：通过 Java 执行命令行，获取控制台输出并展示。
+
+执行的命令行为：
+
+```[nodeDir]node [fecsDir]fecs [options]```
+
+通过 Preferences 的设置来获取 ```[nodeDir]``` ```[fecsDir]``` 的值
+
 ## 使用前提
 
 安装 [Node.js](https://nodejs.org/download/) ，下载 [fecs](https://github.com/ecomfe/fecs) 。
@@ -16,7 +24,7 @@
 
 + 在线安装（更新）
 
-在 Work with 一栏填写 update 网址：http://fental.github.io/Fental/update
+在 Work with 一栏填写 update 网址：http://ecomfe.github.io/fecs-eclipse/update
 
 ![update](images/update.png)
 
@@ -26,15 +34,27 @@
 
 ### 配置
 
-激活插件在偏好设置（Preferences）中设置 Node.js 和 FECS 的 bin 路径：
+在偏好设置（Preferences）中设置 Node.js 和 FECS 的 bin 路径：
 
-![未配置路径](images/unconfig.png)
+![未配置路径](images/noconfig.png)
 
-如果 Eclipse 可以获取系统环境变量，则可以使用 Node.js 的 default 路径，否则需要配置 Node.js 的bin路径。
+**配置 Node.js 的 bin 路径。**
+
++ Use default directory of node interpreter
+	
+	这个选项表示 Eclipse 可以获得系统环境变量，```[nodeDir] = ""```，执行的命令行为 ```node [fecsDir]fecs [options]```
+
++ Provide the directory of node interpreter
+
+	这个选项表示比较容易容易理解，把选取的目录赋值给 ```[nodeDir]``` 。
 
 **配置 FECS 的 bin 路径。**
 
-![配置路径](images/hadconfig.png)
++ Provide the directory of fecs interpreter
+
+	这个选项表示比较容易容易理解，把选取的目录赋值给 ```[fecsDir]``` 。
+	
+![配置路径](images/config.png)
 
 配置完没有提示错误信息则可以正常使用。
 
