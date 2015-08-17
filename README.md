@@ -17,8 +17,8 @@
 + 在线安装（更新）
 
 在 Work with 一栏填写 update 网址：http://fental.github.io/Fental/update
-![update](images/update.png)
 
+![update](images/update.png)
 
 ![安装](images/install.png)
 
@@ -41,6 +41,7 @@
 ### 启用
 
 右键项目进入 property 可设置插件检查哪些文件
+
 ![property](images/property.png)
 
 在 Configuration 子选项卡可以导入 .fecsrc 文件更细粒度的配置
