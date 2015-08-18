@@ -63,7 +63,6 @@ public class FecsPreferencePage extends PreferencePage implements IWorkbenchPref
     private Button customLibPathButton;
 
     // FECS
-    private Button defaultFecsRadio;
     private Button customFecsRadio;
     private Text customFecsPathText;
     private Button customFecsPathButton;

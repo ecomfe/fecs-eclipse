@@ -12,10 +12,10 @@ Require-Bundle: org.eclipse.ui;bundle-version="3.6.0",
  org.eclipse.jface
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Import-Package: com.eclipsesource.fecs;version="[0.9.11,1.0.0)",
- com.eclipsesource.fecs.internal;version="0.9.11",
- com.eclipsesource.json;version="[0.9.0.jshint,0.9.0.jshint]"
-Export-Package: com.eclipsesource.fecs.ui.internal;version="0.9.11";x-internal:=true,
- com.eclipsesource.fecs.ui.internal.builder;version="0.9.11";x-internal:=true,
- com.eclipsesource.fecs.ui.internal.preferences;version="0.9.11";x-internal:=true,
- com.eclipsesource.fecs.ui.internal.preferences.ui;version="0.9.11";x-internal:=true
+Import-Package: com.eclipsesource.fecs,
+ com.eclipsesource.fecs.internal,
+ com.eclipsesource.json
+Export-Package: com.eclipsesource.fecs.ui.internal,
+ com.eclipsesource.fecs.ui.internal.builder,
+ com.eclipsesource.fecs.ui.internal.preferences,
+ com.eclipsesource.fecs.ui.internal.preferences.ui
