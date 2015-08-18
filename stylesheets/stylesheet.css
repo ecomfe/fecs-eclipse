@@ -130,7 +130,7 @@ Theme Styles
 body {
     box-sizing: border-box;
 
-    font: "Myriad Pro", Calibri, Helvetica, Arial, sans-serif 16px/1.5;
+    font: 16px/1.5 "Myriad Pro", Calibri, Helvetica, Arial, sans-serif;
 
     color: #373737;
     background: #212121;
