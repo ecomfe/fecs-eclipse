@@ -3,5 +3,11 @@
  * @author Fental <fengeeker@gmail.com>
  */
 
-/* eslint-disable no-console */
-console.log('This would be the main JS file.');
+(function (win, doc) {
+    win.onload = function () {
+        var input = doc.getElementById('update-link');
+        input.onmouseover = function () {
+            input.select();
+        };
+    };
+})(window, document);

@@ -485,6 +485,16 @@ Full-Width Styles
     background: #f2f2f2;
 }
 
+.update-link {
+    width: 300px;
+    border: none;
+    font: 16px/1.5 "Myriad Pro", Calibri, Helvetica, Arial, sans-serif;
+    text-align: center;
+}
+.update-link:focus {
+    outline: none;
+}
+
 #main-content {
     padding-top: 40px;
 }
