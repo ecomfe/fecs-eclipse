@@ -12,7 +12,8 @@
 
 ## 使用前提
 
-安装 [Node.js](https://nodejs.org/download/) ，下载 [fecs](https://github.com/ecomfe/fecs) 。
++ Eclipse 3.6 或更新。（测试过 Mars，Helios 原则上也是可以的）
++ 安装 [Node.js](https://nodejs.org/download/) ，安装 [fecs](https://github.com/ecomfe/fecs) 。
 
 ## 安装（更新）方式
 
