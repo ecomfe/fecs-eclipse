@@ -6,9 +6,8 @@ Bundle-Version: 0.0.1.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: EclipseSource
 Bundle-ActivationPolicy: lazy
-Export-Package: com.eclipsesource.fecs;version="0.9.11",
- com.eclipsesource.fecs.internal;version="0.9.11";x-friends:="com.eclipsesource.jshint.test",
- com.eclipsesource.json;version="0.9.0.jshint"
-Require-Bundle: org.mozilla.javascript;bundle-version="1.7.4"
+Export-Package: com.eclipsesource.fecs,
+ com.eclipsesource.fecs.internal,
+ com.eclipsesource.json
 Import-Package: org.eclipse.core.resources,
  org.eclipse.core.runtime;version="3.5.0"
