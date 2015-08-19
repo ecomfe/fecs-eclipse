@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>
-        fecs-eclipse
+         fecs-eclipse 
     </title>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="description" content="fecs-eclipse : fecs for eclipse">
@@ -28,54 +28,54 @@
         <section id="main-content" class="inner">
             <h1> <a id="fecs-eclipse" class="anchor" href="#fecs-eclipse" aria-hidden="true"><span class="octicon octicon-link"></span></a>fecs-eclipse</h1>
             <p>
-                本插件在
+                 本插件在 
                 <a href="https://github.com/eclipsesource/jshint-eclipse">jshint-eclipse</a>
-                插件的基础上，进行修改和扩展。
+                 插件的基础上，进行修改和扩展。 
             </p>
             <p>
-                插件实现方式：通过 Java 执行命令行，获取控制台输出并展示。
+                 插件实现方式：通过 Java 执行命令行，获取控制台输出并展示。 
             </p>
             <p>
-                执行的命令行为：
+                 执行的命令行为： 
             </p>
             <p>
                 <code>[nodeDir]node [fecsDir]fecs [options]</code>
             </p>
             <p>
-                通过 Preferences 的设置来获取
+                 通过 Preferences 的设置来获取 
                 <code>[nodeDir]</code>
                 <code>[fecsDir]</code>
-                的值
+                 的值 
             </p>
             <h2> <a id="usage-condition" class="anchor" href="#usage-condition" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用前提</h2>
             <p>
-                安装
+                 安装 
                 <a href="https://nodejs.org/download/">Node.js</a>
-                ，安装
+                 ，安装 
                 <a href="https://github.com/ecomfe/fecs">fecs</a>
-                。
+                 。 
             </p>
             <h2> <a id="install-update" class="anchor" href="#install-update" aria-hidden="true"><span class="octicon octicon-link"></span></a>安装（更新）方式</h2>
             <p>
-                在 help 选项卡的 Install New Software 下进行安装
+                 在 help 选项卡的 Install New Software 下进行安装 
             </p>
             <ul>
                 <li>
-                    本地安装（更新）
+                     本地安装（更新） 
                 </li>
             </ul>
             <p>
-                下载该项目代码，点击 Add -&gt; Local... -&gt; 打开项目的 com.eclipsesource.fecs.update 目录 -&gt; OK
+                 下载该项目代码，点击 Add -&gt; Local... -&gt; 打开项目的 com.eclipsesource.fecs.update 目录 -&gt; OK 
             </p>
             <ul>
                 <li>
-                    在线安装（更新）
+                     在线安装（更新） 
                 </li>
             </ul>
             <p>
-                在 Work with 一栏填写 update 网址：
+                 在 Work with 一栏填写 update 网址： 
                 <!--<a href="http://ecomfe.github.io/fecs-eclipse/update">http://ecomfe.github.io/fecs-eclipse/update</a>-->
-                <input class="update-link" id="update-link" type="text" value="http://ecomfe.github.io/fecs-eclipse/update">
+                <input class="update-link" id="update-link" type="text" value="http://ecomfe.github.io/fecs-eclipse/update/">
             </p>
             <p>
                 <img src="images/update.png" alt="update" width="100%" height="100%">
@@ -86,49 +86,49 @@
             <h2> <a id="how-to-usage" class="anchor" href="#how-to-usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用方法</h2>
             <h3> <a id="configure" class="anchor" href="#configure" aria-hidden="true"><span class="octicon octicon-link"></span></a>配置</h3>
             <p>
-                在偏好设置（Preferences）中设置 Node.js 和 FECS 的 bin 路径：
+                 在偏好设置（Preferences）中设置 Node.js 和 FECS 的 bin 目录： 
             </p>
             <p>
                 <img src="images/noconfig.png" alt="未配置路径" width="100%" height="100%">
             </p>
             <p>
-                <strong>配置 Node.js 的 bin 路径。</strong>
+                <strong>配置 Node.js 的 bin 目录。</strong>
             </p>
             <ul>
                 <li>
                     <p>
-                        Use default directory of node interpreter
+                         Use default directory of node interpreter 
                     </p>
                     <p>
-                        这个选项表示 Eclipse 可以获得系统环境变量，
+                         这个选项表示 Eclipse 可以获得系统环境变量， 
                         <code>[nodeDir] = ""</code>
-                        ，执行的命令行为 
+                         ，执行的命令行为 
                         <code>node [fecsDir]fecs [options]</code>
                     </p>
                 </li>
                 <li>
                     <p>
-                        Provide the directory of node interpreter
+                         Provide the directory of node interpreter 
                     </p>
                     <p>
-                        把选取的目录赋值给
+                         把选取的目录赋值给 
                         <code>[nodeDir]</code>
-                        。
+                         。 
                     </p>
                 </li>
             </ul>
             <p>
-                <strong>配置 FECS 的 bin 路径。</strong>
+                <strong>配置 FECS 的 bin 目录。</strong>
             </p>
             <ul>
                 <li>
                     <p>
-                        Provide the directory of fecs interpreter
+                         Provide the directory of fecs interpreter 
                     </p>
                     <p>
-                        把选取的目录赋值给
+                         把选取的目录赋值给 
                         <code>[fecsDir]</code>
-                        。
+                         。 
                     </p>
                 </li>
             </ul>
@@ -136,24 +136,32 @@
                 <img src="images/config.png" alt="配置路径" width="100%" height="100%">
             </p>
             <p>
-                配置完没有提示错误信息则可以正常使用。
+                 配置完没有提示错误信息则可以正常使用。 
             </p>
             <h3> <a id="start" class="anchor" href="#start" aria-hidden="true"><span class="octicon octicon-link"></span></a>启用</h3>
             <p>
-                右键项目进入 property 可设置插件检查哪些文件
+                右键项目进入 property ，勾选 Enable FECS 并应用，即可启用插件。
+            </p>
+            <p>
+                可设置插件检查及忽略的文件。
+            </p>
+            <p>
+                插件的默认配置中，检查项目中的 css, html, js, less 文件，过滤项目中的各种压缩文件和模板文件。具体默认配置如图。（
+                <strong>注意：该插件不检查默认忽略的文件类型，及时将其从 exlcude 移除并添加至 include 中也不会检查。</strong>
+                ）
             </p>
             <p>
                 <img src="images/property.png" alt="property" width="100%" height="100%">
             </p>
             <p>
-                在 Configuration 子选项卡可以导入 .fecsrc 文件更细粒度的配置
+                 在 Configuration 子选项卡可以导入 .fecsrc 文件更细粒度的配置 
             </p>
             <p>
                 <img src="images/fecsrc.png" alt="fecsrc configuration" width="100%" height="100%">
             </p>
             <h3> <a id="check" class="anchor" href="#check" aria-hidden="true"><span class="octicon octicon-link"></span></a>代码检查</h3>
             <p>
-                如图
+                 如图 
             </p>
             <p>
                 <img src="images/check.png" alt="check" width="100%" height="100%">
@@ -163,11 +171,11 @@
                 <img src="images/format.png" alt="format" width="100%" height="100%">
             </p>
             <p>
-                可以通过点击工具栏的这两个按钮进行格式化（左侧的图标是格式化当前打开的文件，快捷键是 command + 6 或者 ctrl + 6，暂不支持快捷键自定义；右侧的图标是格式化左侧选中的项目/文件夹/文件）
+                 可以通过点击工具栏的这两个按钮进行格式化（左侧的图标是格式化当前打开的文件，快捷键是 command + 6 或者 ctrl + 6，暂不支持快捷键自定义；右侧的图标是格式化左侧选中的项目/文件夹/文件） 
             </p>
             <p>
                 <strong>格式化后不满意可通过回退来恢复原先文件内容</strong>
-                ，使用格式化项目或者文件夹这个功能时，property 的过滤器会起作用。
+                 ，使用格式化项目或者文件夹这个功能时，property 的过滤器会起作用。 
             </p>
         </section>
     </div>
@@ -175,11 +183,11 @@
     <div id="footer-wrap" class="outer">
         <footer class="inner">
             <p class="copyright">
-                fecs-eclipse maintained by 
+                 fecs-eclipse maintained by 
                 <a href="https://github.com/Fental">Fental</a>
             </p>
             <p>
-                Published with 
+                 Published with 
                 <a href="https://pages.github.com">GitHub Pages</a>
             </p>
         </footer>

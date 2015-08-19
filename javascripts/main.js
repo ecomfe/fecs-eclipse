@@ -4,10 +4,8 @@
  */
 
 (function (win, doc) {
-    win.onload = function () {
-        var input = doc.getElementById('update-link');
-        input.onmouseover = function () {
-            input.select();
-        };
+    var input = doc.getElementById('update-link');
+    input.onmouseover = function () {
+        input.select();
     };
 })(window, document);

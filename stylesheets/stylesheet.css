@@ -195,14 +195,14 @@ a {
 
     color: #007edf;
     text-shadow: none;
-    -webkit-transition: color .5s ease;
-    -webkit-transition: text-shadow .5s ease;
-       -moz-transition: color .5s ease;
-       -moz-transition: text-shadow .5s ease;
-         -o-transition: color .5s ease;
-         -o-transition: text-shadow .5s ease;
-            transition: color .5s ease;
-            transition: text-shadow .5s ease;
+    -webkit-transition: color 0.5s ease;
+    -webkit-transition: text-shadow 0.5s ease;
+       -moz-transition: color 0.5s ease;
+       -moz-transition: text-shadow 0.5s ease;
+         -o-transition: color 0.5s ease;
+         -o-transition: text-shadow 0.5s ease;
+            transition: color 0.5s ease;
+            transition: text-shadow 0.5s ease;
 }
 
 a:hover,
@@ -236,7 +236,6 @@ img {
     -webkit-box-shadow: 0 0 5px #ebebeb;
        -moz-box-shadow: 0 0 5px #ebebeb;
             box-shadow: 0 0 5px #ebebeb;
-
 }
 
 p img {
@@ -488,9 +487,11 @@ Full-Width Styles
 .update-link {
     width: 300px;
     border: none;
+
     font: 16px/1.5 "Myriad Pro", Calibri, Helvetica, Arial, sans-serif;
     text-align: center;
 }
+
 .update-link:focus {
     outline: none;
 }
