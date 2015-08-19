@@ -25,7 +25,7 @@
 
 + 在线安装（更新）
 
-在 Work with 一栏填写 update 网址：http://ecomfe.github.io/fecs-eclipse/update
+在 Work with 一栏填写 update 网址：http://ecomfe.github.io/fecs-eclipse/update/
 
 ![update](images/update.png)
 
@@ -35,11 +35,11 @@
 
 ### 配置
 
-在偏好设置（Preferences）中设置 Node.js 和 FECS 的 bin 路径：
+在偏好设置（Preferences）中设置 Node.js 和 FECS 的 bin 目录：
 
 ![未配置路径](images/noconfig.png)
 
-**配置 Node.js 的 bin 路径。**
+**配置 Node.js 的 bin 目录。**
 
 + Use default directory of node interpreter
 	
@@ -49,7 +49,7 @@
 
 	把选取的目录赋值给 ```[nodeDir]``` 。
 
-**配置 FECS 的 bin 路径。**
+**配置 FECS 的 bin 目录。**
 
 + Provide the directory of fecs interpreter
 
@@ -61,7 +61,11 @@
 
 ### 启用
 
-右键项目进入 property 可设置插件检查哪些文件
+右键项目进入 property ，勾选 Enable FECS 并应用，即可启用插件。
+
+可设置插件检查及忽略的文件。
+
+插件的默认配置中，检查项目中的 css, html, js, less 文件，过滤项目中的各种压缩文件和模板文件。具体默认配置如图。（**注意：该插件不检查默认忽略的文件类型，及时将其从 exlcude 移除并添加至 include 中也不会检查。**）
 
 ![property](images/property.png)
 
