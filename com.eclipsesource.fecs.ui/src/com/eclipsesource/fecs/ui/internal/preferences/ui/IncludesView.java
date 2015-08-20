@@ -23,6 +23,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
@@ -33,12 +34,14 @@ import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 
 import com.eclipsesource.fecs.ui.internal.preferences.EnablementPreferences;
+import com.eclipsesource.fecs.ui.internal.preferences.PathEncoder;
 
 public class IncludesView extends Composite {
 
     private Table includeTable;
     private Table excludeTable;
     private Image fileImage;
+    private Button enableFecs;
 
     public IncludesView(Composite parent, int style, IProject project) {
         super(parent, style);
@@ -46,11 +49,16 @@ public class IncludesView extends Composite {
         createImages();
         createIncludeControls();
         createExcludeControls();
+        createEnableFecsPart(parent);
     }
 
     public void loadDefaults() {
-        setPatterns(includeTable, Collections.<String> emptyList());
-        setPatterns(excludeTable, Collections.<String> emptyList());
+        setPatterns(includeTable, PathEncoder.decodePaths("//*.css://*.html://*.js://*.less"));
+        setPatterns(excludeTable, PathEncoder.decodePaths(
+            "//*.m.css://*.m.htm://*.m.html://*.min.css://*.min.htm://*.min.html://*.min.js://*.tpl.htm://*.tpl.html")
+        );
+        
+        enableFecs.setSelection(false);
     }
 
     public void loadPreferences(EnablementPreferences preferences) {
@@ -58,6 +66,8 @@ public class IncludesView extends Composite {
         List<String> excludePatterns = preferences.getExcludePatterns();
         setPatterns(includeTable, includePatterns);
         setPatterns(excludeTable, excludePatterns);
+        
+        enableFecs.setSelection(preferences.getUseFecs());
     }
 
     public void storePreferences(EnablementPreferences preferences) {
@@ -65,8 +75,23 @@ public class IncludesView extends Composite {
         preferences.setIncludePatterns(includePatterns);
         ArrayList<String> excludePatterns = getPatterns(excludeTable);
         preferences.setExcludePatterns(excludePatterns);
+        
+        preferences.setUseFecs(enableFecs.getSelection());
     }
-
+    
+    // 创建checkbox
+    private Control createEnableFecsPart(Composite parent) {
+        enableFecs = new Button(parent, SWT.CHECK);
+        enableFecs.setText("Enable FECS.");
+        enableFecs.addListener(SWT.Selection, new Listener() {
+            public void handleEvent(Event event) {
+                // checkbox改变触发函数，更改editor的状态
+//                prefsChanged();
+            }
+        });
+        return enableFecs;
+    }
+    
     private void createImages() {
         Display display = getDisplay();
         ISharedImages images = PlatformUI.getWorkbench().getSharedImages();
@@ -116,7 +141,7 @@ public class IncludesView extends Composite {
     }
 
     private void createAddButton(final Table table, ButtonBar buttonBar) {
-        buttonBar.addButton("Add", new Listener() {
+        buttonBar.addButton("Add...", new Listener() {
             public void handleEvent(Event event) {
                 addPattern(table);
             }
@@ -124,7 +149,7 @@ public class IncludesView extends Composite {
     }
 
     private void createEditButton(final Table table, ButtonBar buttonBar) {
-        final Button button = buttonBar.addButton("Edit", new Listener() {
+        final Button button = buttonBar.addButton("Edit...", new Listener() {
             public void handleEvent(Event event) {
                 editSelectedPattern(table);
             }

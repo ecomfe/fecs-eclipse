@@ -101,12 +101,12 @@ public class ConfigPreferencePage extends PreferencePage implements IWorkbenchPr
     private Control createButtonsPart(Composite parent) {
         // 包装组合部件类，composite将按钮包装
         ButtonBar buttonBar = new ButtonBar(parent, SWT.NONE);
-        buttonBar.addButton("I&mport", new Listener() {
+        buttonBar.addButton("I&mport...", new Listener() {
             public void handleEvent(Event event) {
                 configEditor.importConfig();
             }
         });
-        buttonBar.addButton("E&xport", new Listener() {
+        buttonBar.addButton("E&xport...", new Listener() {
             public void handleEvent(Event event) {
                 configEditor.exportConfig();
             }

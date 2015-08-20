@@ -187,7 +187,7 @@ public class FecsPreferencePage extends PreferencePage implements IWorkbenchPref
 
         // 选择文件的按钮
         customLibPathButton = new Button(parent, SWT.PUSH);
-        customLibPathButton.setText("Select");
+        customLibPathButton.setText("Browse...");
         customLibPathButton.addListener(SWT.Selection, new Listener() {
             public void handleEvent(Event event) {
                 // selectFile();
@@ -242,7 +242,7 @@ public class FecsPreferencePage extends PreferencePage implements IWorkbenchPref
 
         // 选择文件的按钮
         customFecsPathButton = new Button(parent, SWT.PUSH);
-        customFecsPathButton.setText("Select");
+        customFecsPathButton.setText("Browse...");
         customFecsPathButton.addListener(SWT.Selection, new Listener() {
             public void handleEvent(Event event) {
                 // selectFile();

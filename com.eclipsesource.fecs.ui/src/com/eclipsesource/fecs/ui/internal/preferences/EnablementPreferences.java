@@ -17,10 +17,15 @@ import org.osgi.service.prefs.Preferences;
 
 public class EnablementPreferences {
 
+    private static final String KEY_USE_FECS = "useFecs";
+
     private static final String KEY_EXCLUDED = "excluded";
     private static final String KEY_INCLUDED = "included";
-    private static final String DEF_EXCLUDED = "";
-    private static final String DEF_INCLUDED = "";
+    private static final String DEF_EXCLUDED =
+            "//*.m.css://*.m.htm://*.m.html://*.min.css://*.min.htm://*.min.html://*.min.js://*.tpl.htm://*.tpl.html";
+    private static final String DEF_INCLUDED = "//*.css://*.html://*.js://*.less";
+
+    private static final Boolean DEF_USE_FECS = false;
 
     private final Preferences node;
     private boolean changed;
@@ -28,6 +33,23 @@ public class EnablementPreferences {
     public EnablementPreferences(Preferences node) {
         this.node = node;
         changed = false;
+    }
+
+    public boolean getUseFecs() {
+
+        return node.getBoolean(KEY_USE_FECS, DEF_USE_FECS);
+    }
+
+    public void setUseFecs(boolean useFecs) {
+        if (useFecs != node.getBoolean(KEY_USE_FECS, DEF_USE_FECS)) {
+            if (useFecs == DEF_USE_FECS) {
+                node.remove(KEY_USE_FECS);
+            }
+            else {
+                node.putBoolean(KEY_USE_FECS, useFecs);    
+            }
+            changed = true;
+        }
     }
 
     public void setIncludePatterns(List<String> patterns) {

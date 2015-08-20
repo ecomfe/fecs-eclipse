@@ -25,6 +25,7 @@ import com.eclipsesource.fecs.ui.internal.builder.BuilderUtil;
 import com.eclipsesource.fecs.ui.internal.builder.FecsBuilder;
 import com.eclipsesource.fecs.ui.internal.preferences.EnablementPreferences;
 import com.eclipsesource.fecs.ui.internal.preferences.ResourceSelector;
+// import com.eclipsesource.fecs.ui.internal.preferences.PathEncoder;
 
 public class ProjectPropertyPage extends AbstractPropertyPage {
 
@@ -33,8 +34,12 @@ public class ProjectPropertyPage extends AbstractPropertyPage {
     @Override
     public boolean performOk() {
         try {
+
             if (storePreferences()) {
+                // 点击了ok之后如果property有变，则保存，并且将构造器绑定在项目上
                 boolean enabled = new ResourceSelector(getResource().getProject()).allowVisitProject();
+                System.out.println("项目是否允许检查：");
+                System.out.println(enabled);
                 setBuilderEnabled(enabled);
                 triggerRebuild();
             }
@@ -73,6 +78,8 @@ public class ProjectPropertyPage extends AbstractPropertyPage {
         Preferences node = getPreferences();
         EnablementPreferences enablePreferences = new EnablementPreferences(node);
         includesView.storePreferences(enablePreferences);
+        System.out.println("property是否改变：");
+        System.out.println(enablePreferences.hasChanged());
         if (enablePreferences.hasChanged()) {
             savePreferences();
             return true;

@@ -21,26 +21,30 @@ public class ResourceSelector {
 
     private final List<PathPattern> includePatterns;
     private final List<PathPattern> excludePatterns;
+    private final Boolean useFecs;
 
     public ResourceSelector(IProject project) {
         Preferences preferenceNode = PreferencesFactory.getProjectPreferences(project);
         EnablementPreferences preferences = new EnablementPreferences(preferenceNode);
         includePatterns = createPatterns(preferences.getIncludePatterns());
         excludePatterns = createPatterns(preferences.getExcludePatterns());
+        useFecs = preferences.getUseFecs();
     }
 
     public boolean allowVisitProject() {
-        return !includePatterns.isEmpty();
+        System.out.println("是否启用：");
+        System.out.println(useFecs);
+        return useFecs && (!includePatterns.isEmpty());
     }
 
     public boolean allowVisitFolder(IResource resource) {
-        return !includePatterns.isEmpty();
+        return useFecs && (!includePatterns.isEmpty());
     }
 
     public boolean allowVisitFile(IResource resource) {
         String[] pathSegments = resource.getParent().getProjectRelativePath().segments();
         String fileName = resource.getName();
-        return isFileIncluded(pathSegments, fileName) && !isFileExcluded(pathSegments, fileName);
+        return useFecs && isFileIncluded(pathSegments, fileName) && !isFileExcluded(pathSegments, fileName);
     }
 
     private boolean isFileIncluded(String[] parentSegments, String fileName) {

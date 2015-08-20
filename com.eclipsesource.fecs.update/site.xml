@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/com.eclipsesource.fecs.feature_0.0.1.201508181845.jar" id="com.eclipsesource.fecs.feature" version="0.0.1.201508181845">
+   <feature url="features/com.eclipsesource.fecs.feature_0.0.1.201508191605.jar" id="com.eclipsesource.fecs.feature" version="0.0.1.201508191605">
       <category name="com.eclipsesource.fecs.update"/>
    </feature>
    <category-def name="com.eclipsesource.fecs.update" label="FECS"/>

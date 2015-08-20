@@ -134,12 +134,12 @@ public class ConfigPropertyPage extends AbstractPropertyPage {
     // Import & Export
     private Control createButtonsPart(Composite parent) {
         ButtonBar buttonBar = new ButtonBar(parent, SWT.NONE);
-        buttonBar.addButton("I&mport", new Listener() {
+        buttonBar.addButton("I&mport...", new Listener() {
             public void handleEvent(Event event) {
                 configEditor.importConfig();
             }
         });
-        buttonBar.addButton("E&xport", new Listener() {
+        buttonBar.addButton("E&xport...", new Listener() {
             public void handleEvent(Event event) {
                 configEditor.exportConfig();
             }
