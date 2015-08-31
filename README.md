@@ -53,7 +53,7 @@
 
 + Provide the directory of fecs interpreter
 
-	把选取的目录赋值给 ```[fecsDir]``` 。
+	该目录应为 FECS 安装后的 fecs 文件夹下的 bin 目录。非 Windows 用户可以在终端通过 ```which fecs``` 或者 ```where fecs```查看； Windows 用户在 cmd 命令行通过 ```npm config ls -l``` 查看输出结果中的 prefix 字段（该字段为 npm 包安装的前缀），选取该目录下的 node_modules 的 fecs 文件夹下 bin 目录即可。
 	
 ![配置路径](images/config.png)
 
